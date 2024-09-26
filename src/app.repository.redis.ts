@@ -14,7 +14,7 @@ export class AppRepositoryRedis implements AppRepository {
     from(this.redisClient.connect()).subscribe({ error: console.error });
 
     this.redisClient.on('error', err => console.error(`Redis error: ${err}`));
-    this.redisClient.on('reconnecting', params => console.info(`Redis reconnecting, attempt ${params.attempt}`));
+    this.redisClient.on('reconnecting', () => console.info('Redis reconnecting, attempt'));
     this.redisClient.on('connect', () => console.info('Redis connected'));
     this.redisClient.on('ready', () => console.info('Redis ready'));
     this.redisClient.on('end', () => console.info('Redis connection closed'));
